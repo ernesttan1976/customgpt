@@ -1,0 +1,47 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>My CustomGPT Collection</title>
+  <link rel="preconnect" href="https://fonts.googleapis.com">
+  <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+  <link href="https://fonts.googleapis.com/css2?family=Inter:wght@400;500;600;700&display=swap" rel="stylesheet">
+</head>
+<body>
+  <div class="container">
+    <header>
+      <h1 class="title">My CustomGPT Collection</h1>
+      <div class="controls">
+        <button class="theme-toggle" id="theme-toggle">🌓</button>
+        <div class="view-toggle">
+          <button id="grid-view" class="active">Grid</button>
+          <button id="list-view">List</button>
+        </div>
+      </div>
+    </header>
+
+    <div class="categories">
+      <button class="category active" data-category="all">All</button>
+      <button class="category" data-category="education">Education</button>
+      <button class="category" data-category="tech">Tech & Programming</button>
+      <button class="category" data-category="productivity">Productivity</button>
+      <button class="category" data-category="special">Special Interest</button>
+    </div>
+
+    <div class="search-box">
+      <span class="search-icon">🔍</span>
+      <input type="text" id="search-input" placeholder="Search CustomGPTs...">
+    </div>
+
+    <div class="gpt-container gpt-grid" id="gpt-container">
+      <!-- GPT CARDS WILL BE GENERATED HERE -->
+    </div>
+
+    <footer>
+      <p>© 2025 My Digital Playground | Powered by Coolify</p>
+    </footer>
+  </div>
+  <script type="module" src="/main.js"></script>
+</body>
+</html>
