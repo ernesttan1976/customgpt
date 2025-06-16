@@ -388,3 +388,27 @@ body.dark-mode footer {
     grid-template-columns: 1fr;
   }
 }
+
+.type-badge {
+  font-size: 0.7rem;
+  font-weight: 500;
+  padding: 0.2rem 0.5rem;
+  border-radius: 0.25rem;
+  margin-left: 0.5rem;
+}
+
+.type-badge.gpt {
+  background-color: #10B981;
+  color: white;
+}
+
+.type-badge.app {
+  background-color: #F59E0B;
+  color: white;
+}
+
+.tags {
+  display: flex;
+  align-items: center;
+  flex-wrap: wrap;
+}

@@ -34,7 +34,7 @@ custom-gpt-portal/
 
 ### 2. Setting Up Coolify
 
-1. Access your Coolify dashboard at `http://YOUR_SERVER_IP:3000`
+1. Access your Coolify dashboard at `http://YOUR_SERVER_IP:8000`
 2. Login with your credentials
 
 ### 3. Connecting Your Repository
@@ -120,3 +120,17 @@ To replace OpenAI GPTs with LibreChat instances:
 - Consider setting up authentication for your portal
 - Regularly update your Coolify instance and deployed applications
 - Keep your API keys and credentials secure
+
+
+
+music.techdad.work
+customgpt.techdad.work
+photos.techdad.work
+blog.techdad.work
+n8n.techdad.work
+ai.techdad.work
+videoai.techdad.work
+qr.techdad.work
+pdf.techdad.work
+affine.techdad.work
+pptconvert.techdad.work

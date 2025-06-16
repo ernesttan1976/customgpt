@@ -1,5 +1,98 @@
 import './style.css';
 
+// Replace the gpts array with this apps array
+const apps = [
+  {
+    id: "music",
+    name: "Music Player",
+    icon: "🎵",
+    category: "entertainment",
+    description: "Your personal music streaming and discovery platform",
+    url: "https://music.techdad.work",
+    status: "active" // active, maintenance, beta
+  },
+  {
+    id: "customgpt",
+    name: "CustomGPT Portal", 
+    icon: "🤖",
+    category: "ai",
+    description: "Collection of custom AI assistants and chatbots",
+    url: "https://customgpt.techdad.work"
+  },
+  {
+    id: "photos",
+    name: "Photo Gallery",
+    icon: "📷", 
+    category: "media",
+    description: "Personal photo collection and sharing platform",
+    url: "https://photos.techdad.work"
+  },
+  {
+    id: "blog",
+    name: "Tech Blog",
+    icon: "📝",
+    category: "content", 
+    description: "Technical articles, tutorials, and insights",
+    url: "https://blog.techdad.work"
+  },
+  {
+    id: "n8n",
+    name: "Automation Hub",
+    icon: "🔄",
+    category: "productivity",
+    description: "Workflow automation and integration platform", 
+    url: "https://n8n.techdad.work"
+  },
+  {
+    id: "ai",
+    name: "AI Playground",
+    icon: "🧠",
+    category: "ai",
+    description: "Experimental AI tools and services",
+    url: "https://ai.techdad.work"
+  },
+  {
+    id: "videoai", 
+    name: "Video AI",
+    icon: "🎬",
+    category: "ai",
+    description: "AI-powered video processing and generation",
+    url: "https://videoai.techdad.work"
+  },
+  {
+    id: "qr",
+    name: "QR Generator",
+    icon: "📱", 
+    category: "tools",
+    description: "Generate and customize QR codes for any purpose",
+    url: "https://qr.techdad.work"
+  },
+  {
+    id: "pdf",
+    name: "PDF Tools",
+    icon: "📄",
+    category: "tools", 
+    description: "Convert, merge, split and edit PDF documents",
+    url: "https://pdf.techdad.work"
+  },
+  {
+    id: "affine",
+    name: "Knowledge Base",
+    icon: "📚",
+    category: "productivity",
+    description: "Personal wiki and documentation platform",
+    url: "https://affine.techdad.work"
+  },
+  {
+    id: "pptconvert",
+    name: "PPT Converter", 
+    icon: "📊",
+    category: "tools",
+    description: "Convert presentations between different formats",
+    url: "https://pptconvert.techdad.work"
+  }
+];
+
 // GPT data
 const gpts = [
   {
@@ -116,26 +209,32 @@ const gpts = [
   }
 ];
 
+// Add type: "gpt" to all your existing GPT objects, then combine:
+const allItems = [...gpts.map(gpt => ({...gpt, type: "gpt"})), ...apps];
+
 // Function to generate GPT cards
 function generateGPTCards(filteredGPTs) {
   const container = document.getElementById('gpt-container');
   container.innerHTML = '';
 
   if (container.classList.contains('gpt-grid')) {
-    // Grid view
-    filteredGPTs.forEach(gpt => {
+    filteredItems.forEach(item => {
+      const typeIndicator = item.type === 'gpt' ? '<span class="type-badge gpt">GPT</span>' : '<span class="type-badge app">App</span>';
       container.innerHTML += `
-        <div class="gpt-card" data-category="${gpt.category}">
+        <div class="gpt-card" data-category="${item.category}">
           <div class="header">
-            <div class="icon">${gpt.icon}</div>
+            <div class="icon">${item.icon}</div>
             <div>
-              <h3 class="name">${gpt.name}</h3>
-              <span class="category-tag">${gpt.category.charAt(0).toUpperCase() + gpt.category.slice(1)}</span>
+              <h3 class="name">${item.name}</h3>
+              <div class="tags">
+                <span class="category-tag">${item.category.charAt(0).toUpperCase() + item.category.slice(1)}</span>
+                ${typeIndicator}
+              </div>
             </div>
           </div>
           <div class="body">
-            <p class="description">${gpt.description}</p>
-            <a href="${gpt.url}" target="_blank" class="action-btn">Open GPT</a>
+            <p class="description">${item.description}</p>
+            <a href="${item.url}" target="_blank" class="action-btn">Open ${item.type === 'gpt' ? 'GPT' : 'App'}</a>
           </div>
         </div>
       `;
@@ -187,7 +286,7 @@ document.addEventListener('DOMContentLoaded', function() {
     listView.classList.remove('active');
     container.classList.add('gpt-grid');
     container.classList.remove('gpt-list');
-    generateGPTCards(getFilteredGPTs());
+    generateGPTCards(getFilteredItems());
     localStorage.setItem('viewMode', 'grid');
   });
 
@@ -196,7 +295,7 @@ document.addEventListener('DOMContentLoaded', function() {
     gridView.classList.remove('active');
     container.classList.add('gpt-list');
     container.classList.remove('gpt-grid');
-    generateGPTCards(getFilteredGPTs());
+    generateGPTCards(getFilteredItems());
     localStorage.setItem('viewMode', 'list');
   });
 
@@ -213,7 +312,7 @@ document.addEventListener('DOMContentLoaded', function() {
     button.addEventListener('click', function() {
       categoryButtons.forEach(btn => btn.classList.remove('active'));
       this.classList.add('active');
-      generateGPTCards(getFilteredGPTs());
+      generateGPTCards(getFilteredItems());
       localStorage.setItem('activeCategory', this.dataset.category);
     });
   });
@@ -231,19 +330,23 @@ document.addEventListener('DOMContentLoaded', function() {
   const searchInput = document.getElementById('search-input');
   
   searchInput.addEventListener('input', function() {
-    generateGPTCards(getFilteredGPTs());
+    generateGPTCards(getFilteredItems());
   });
 
   // Helper function to get filtered GPTs
-  function getFilteredGPTs() {
-    const activeCategory = document.querySelector('.category.active').dataset.category;
-    const searchTerm = searchInput.value.toLowerCase();
+function getFilteredItems() {
+  const activeCategory = document.querySelector('.category.active').dataset.category;
+  const searchTerm = searchInput.value.toLowerCase();
+  
+  return allItems.filter(item => {
+    let categoryMatch = activeCategory === 'all';
+    if (activeCategory === 'gpts') categoryMatch = item.type === 'gpt';
+    else if (activeCategory === 'apps') categoryMatch = item.type === 'app';
+    else categoryMatch = activeCategory === 'all' || item.category === activeCategory;
     
-    return gpts.filter(gpt => {
-      const categoryMatch = activeCategory === 'all' || gpt.category === activeCategory;
-      const searchMatch = gpt.name.toLowerCase().includes(searchTerm) || 
-                        gpt.description.toLowerCase().includes(searchTerm);
-      return categoryMatch && searchMatch;
-    });
-  }
+    const searchMatch = item.name.toLowerCase().includes(searchTerm) || 
+                      item.description.toLowerCase().includes(searchTerm);
+    return categoryMatch && searchMatch;
+  });
+}
 });
