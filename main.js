@@ -4,10 +4,10 @@ import './style.css';
 const apps = [
   {
     id: "music",
-    name: "Music Player",
+    name: "AI Music Generator",
     icon: "🎵",
     category: "entertainment",
-    description: "Your personal music streaming and discovery platform",
+    description: "Amazing AI music generator",
     url: "https://music.techdad.work",
     status: "active" // active, maintenance, beta
   },
@@ -21,55 +21,55 @@ const apps = [
   },
   {
     id: "photos",
-    name: "Photo Gallery",
+    name: "Immich Photo Gallery",
     icon: "📷", 
     category: "media",
-    description: "Personal photo collection and sharing platform",
+    description: "Immich, a Google Photos clone",
     url: "https://photos.techdad.work"
   },
   {
     id: "blog",
-    name: "Tech Blog",
+    name: "My Blog",
     icon: "📝",
     category: "content", 
-    description: "Technical articles, tutorials, and insights",
+    description: "Fun posts and insights",
     url: "https://blog.techdad.work"
   },
   {
     id: "n8n",
-    name: "Automation Hub",
+    name: "Nodemation Automation Hub",
     icon: "🔄",
     category: "productivity",
-    description: "Workflow automation and integration platform", 
+    description: "Workflow automation and integration platform - Automate Anything", 
     url: "https://n8n.techdad.work"
   },
   {
     id: "ai",
-    name: "AI Playground",
+    name: "RTFM QnA Chatbot",
     icon: "🧠",
     category: "ai",
-    description: "Experimental AI tools and services",
+    description: "Vision RAG using Colpali model",
     url: "https://ai.techdad.work"
   },
   {
     id: "videoai", 
-    name: "Video AI",
+    name: "Photo to Video AI",
     icon: "🎬",
     category: "ai",
-    description: "AI-powered video processing and generation",
+    description: "Generate short video from a photo",
     url: "https://videoai.techdad.work"
   },
   {
     id: "qr",
-    name: "QR Generator",
+    name: "Artistic QR Generator",
     icon: "📱", 
     category: "tools",
-    description: "Generate and customize QR codes for any purpose",
+    description: "Generate artistic QR code",
     url: "https://qr.techdad.work"
   },
   {
     id: "pdf",
-    name: "PDF Tools",
+    name: "PDF Editing Tools",
     icon: "📄",
     category: "tools", 
     description: "Convert, merge, split and edit PDF documents",
@@ -77,18 +77,18 @@ const apps = [
   },
   {
     id: "affine",
-    name: "Knowledge Base",
+    name: "AFFiNE Whiteboarding",
     icon: "📚",
     category: "productivity",
-    description: "Personal wiki and documentation platform",
+    description: "Notion + Miro => planning and presentation",
     url: "https://affine.techdad.work"
   },
   {
     id: "pptconvert",
-    name: "PPT Converter", 
+    name: "PPT to AFFiNE Converter", 
     icon: "📊",
     category: "tools",
-    description: "Convert presentations between different formats",
+    description: "Convert powerpoint files to AFFiNE Markdown(with images)",
     url: "https://pptconvert.techdad.work"
   }
 ];
@@ -210,10 +210,10 @@ const gpts = [
 ];
 
 // Add type: "gpt" to all your existing GPT objects, then combine:
-const allItems = [...gpts.map(gpt => ({...gpt, type: "gpt"})), ...apps];
+const allItems = [...gpts.map(gpt => ({...gpt, type: "gpt"})), ...apps.map(app => ({...app, type: "app"}))];
 
 // Function to generate GPT cards
-function generateGPTCards(filteredGPTs) {
+function generateGPTCards(filteredItems) {
   const container = document.getElementById('gpt-container');
   container.innerHTML = '';
 
@@ -241,15 +241,15 @@ function generateGPTCards(filteredGPTs) {
     });
   } else {
     // List view
-    filteredGPTs.forEach(gpt => {
+    filteredItems.forEach(item => {
       container.innerHTML += `
-        <div class="gpt-list-item" data-category="${gpt.category}">
-          <div class="icon">${gpt.icon}</div>
+        <div class="gpt-list-item" data-category="${item.category}">
+          <div class="icon">${item.icon}</div>
           <div class="content">
-            <h3 class="name">${gpt.name}</h3>
-            <span class="category-tag">${gpt.category.charAt(0).toUpperCase() + gpt.category.slice(1)}</span>
+            <h3 class="name">${item.name}</h3>
+            <span class="category-tag">${item.category.charAt(0).toUpperCase() + item.category.slice(1)}</span>
           </div>
-          <a href="${gpt.url}" target="_blank" class="action-btn">Open</a>
+          <a href="${item.url}" target="_blank" class="action-btn">Open</a>
         </div>
       `;
     });
@@ -259,7 +259,7 @@ function generateGPTCards(filteredGPTs) {
 // Initialize
 document.addEventListener('DOMContentLoaded', function() {
   // Generate initial cards
-  generateGPTCards(gpts);
+  generateGPTCards(allItems);
 
   // Theme toggle
   const themeToggle = document.getElementById('theme-toggle');
@@ -334,19 +334,21 @@ document.addEventListener('DOMContentLoaded', function() {
   });
 
   // Helper function to get filtered GPTs
-function getFilteredItems() {
-  const activeCategory = document.querySelector('.category.active').dataset.category;
-  const searchTerm = searchInput.value.toLowerCase();
-  
-  return allItems.filter(item => {
-    let categoryMatch = activeCategory === 'all';
-    if (activeCategory === 'gpts') categoryMatch = item.type === 'gpt';
-    else if (activeCategory === 'apps') categoryMatch = item.type === 'app';
-    else categoryMatch = activeCategory === 'all' || item.category === activeCategory;
+  function getFilteredItems() {
+    const activeCategory = document.querySelector('.category.active')?.dataset.category || 'all';
+    const searchTerm = document.getElementById('search-input').value.toLowerCase();
     
-    const searchMatch = item.name.toLowerCase().includes(searchTerm) || 
-                      item.description.toLowerCase().includes(searchTerm);
-    return categoryMatch && searchMatch;
-  });
-}
+    return allItems.filter(item => {
+      const categoryMatch = activeCategory === 'all' || item.category === activeCategory;
+      const searchMatch = !searchTerm || 
+                        item.name.toLowerCase().includes(searchTerm) || 
+                        item.description.toLowerCase().includes(searchTerm);
+      return categoryMatch && searchMatch;
+    });
+  }
 });
+
+// Add this after DOMContentLoaded
+const container = document.getElementById('gpt-container');
+// Set default view mode
+container.classList.add('gpt-grid');
