@@ -1,0 +1,1235 @@
+This file is a merged representation of the entire codebase, combined into a single document by Repomix.
+
+<file_summary>
+This section contains a summary of this file.
+
+<purpose>
+This file contains a packed representation of the entire repository's contents.
+It is designed to be easily consumable by AI systems for analysis, code review,
+or other automated processes.
+</purpose>
+
+<file_format>
+The content is organized as follows:
+1. This summary section
+2. Repository information
+3. Directory structure
+4. Repository files (if enabled)
+4. Repository files, each consisting of:
+  - File path as an attribute
+  - Full contents of the file
+</file_format>
+
+<usage_guidelines>
+- This file should be treated as read-only. Any changes should be made to the
+  original repository files, not this packed version.
+- When processing this file, use the file path to distinguish
+  between different files in the repository.
+- Be aware that this file may contain sensitive information. Handle it with
+  the same level of security as you would the original repository.
+</usage_guidelines>
+
+<notes>
+- Some files may have been excluded based on .gitignore rules and Repomix's configuration
+- Binary files are not included in this packed representation. Please refer to the Repository Structure section for a complete list of file paths, including binary files
+- Files matching patterns in .gitignore are excluded
+- Files matching default ignore patterns are excluded
+- Files are sorted by Git change count (files with more changes are at the bottom)
+</notes>
+
+<additional_info>
+
+</additional_info>
+
+</file_summary>
+
+<directory_structure>
+.gitignore
+docker-compose.yml
+Dockerfile
+index.html
+main.js
+nginx.conf
+package.json
+readme.md
+style.css
+vite.config.js
+</directory_structure>
+
+<files>
+This section contains the contents of the repository's files.
+
+<file path=".gitignore">
+# Byte-compiled / optimized / DLL files
+__pycache__/
+*.py[cod]
+*$py.class
+
+# C extensions
+*.so
+
+# Distribution / packaging
+.Python
+build/
+develop-eggs/
+dist/
+downloads/
+eggs/
+.eggs/
+lib/
+lib64/
+parts/
+sdist/
+var/
+wheels/
+share/python-wheels/
+*.egg-info/
+.installed.cfg
+*.egg
+MANIFEST
+
+# PyInstaller
+#  Usually these files are written by a python script from a template
+#  before PyInstaller builds the exe, so as to inject date/other infos into it.
+*.manifest
+*.spec
+
+# Installer logs
+pip-log.txt
+pip-delete-this-directory.txt
+
+# Unit test / coverage reports
+htmlcov/
+.tox/
+.nox/
+.coverage
+.coverage.*
+.cache
+nosetests.xml
+coverage.xml
+*.cover
+*.py,cover
+.hypothesis/
+.pytest_cache/
+cover/
+
+# Translations
+*.mo
+*.pot
+
+# Django stuff:
+*.log
+local_settings.py
+db.sqlite3
+db.sqlite3-journal
+
+# Flask stuff:
+instance/
+.webassets-cache
+
+# Scrapy stuff:
+.scrapy
+
+# Sphinx documentation
+docs/_build/
+
+# PyBuilder
+.pybuilder/
+target/
+
+# Jupyter Notebook
+.ipynb_checkpoints
+
+# IPython
+profile_default/
+ipython_config.py
+server/server.js
+
+# pyenv
+#   For a library or package, you might want to ignore these files since the code is
+#   intended to run in multiple environments; otherwise, check them in:
+# .python-version
+
+# pipenv
+#   According to pypa/pipenv#598, it is recommended to include Pipfile.lock in version control.
+#   However, in case of collaboration, if having platform-specific dependencies or dependencies
+#   having no cross-platform support, pipenv may install dependencies that don't work, or not
+#   install all needed dependencies.
+#Pipfile.lock
+
+# pdm
+#   Similar to Pipfile.lock, it is generally recommended to include pdm.lock in version control.
+#pdm.lock
+#   pdm stores project-wide configurations in .pdm.toml, but it is recommended to not include it
+#   in version control.
+#   https://pdm.fming.dev/#use-with-ide
+.pdm.toml
+
+# PEP 582; used by e.g. github.com/David-OConnor/pyflow and github.com/pdm-project/pdm
+__pypackages__/
+
+# Celery stuff
+celerybeat-schedule
+celerybeat.pid
+
+# SageMath parsed files
+*.sage.py
+
+# Environments
+.env
+.venv
+env/
+venv/
+ENV/
+env.bak/
+venv.bak/
+
+# Spyder project settings
+.spyderproject
+.spyproject
+
+# Rope project settings
+.ropeproject
+
+# mkdocs documentation
+/site
+
+# mypy
+.mypy_cache/
+.dmypy.json
+dmypy.json
+
+# Pyre type checker
+.pyre/
+
+# pytype static type analyzer
+.pytype/
+
+# Cython debug symbols
+cython_debug/
+
+# PyCharm
+#  JetBrains specific template is maintained in a separate JetBrains.gitignore that can
+#  be found at https://github.com/github/gitignore/blob/main/Global/JetBrains.gitignore
+#  and can be added to the global gitignore or merged into this file.  For a more nuclear
+#  option (not recommended) you can uncomment the following to ignore the entire idea folder.
+#.idea/
+.aider*
+node_modules
+
+#docker-volume
+postgres-data
+
+#ide
+pyrightconfig.json
+
+# MacOS gitignore
+.DS_Store
+.AppleDouble
+.LSOverride
+
+# Icon must end with two \r
+Icon
+
+# Thumbnails
+._*
+
+# Files that might appear in the root of a volume
+.DocumentRevisions-V100
+.fseventsd
+.Spotlight-V100
+.TemporaryItems
+.Trashes
+.VolumeIcon.icns
+.com.apple.timemachine.donotpresent
+
+# Directories potentially created on remote AFP share
+.AppleDB
+.AppleDesktop
+Network Trash Folder
+Temporary Items
+.apdisk
+
+# Jest Coverage
+coverage
+cacert/
+**/repomix-output.txt
+
+# Drone data files
+aeroscope_socket_analyzer/aeroscope_scraper/drone_data/archive/
+aeroscope_socket_analyzer/aeroscope_scraper/drone_data/latest.json
+
+# Environment variables
+.env
+.env.*
+!.env.example
+
+# Prisma
+prisma/.env
+
+# Node
+node_modules/
+</file>
+
+<file path="docker-compose.yml">
+version: '3.8'
+
+services:
+  gpt-portal:
+    build:
+      context: .
+      dockerfile: Dockerfile
+    restart: unless-stopped
+    ports:
+      - "8082:8082"
+    healthcheck:
+      test: ["CMD", "curl", "-f", "http://localhost:8082"]
+      interval: 30s
+      timeout: 10s
+      retries: 3
+    networks:
+      - gpt-network
+    deploy:
+      resources:
+        limits:
+          cpus: '0.5'
+          memory: 256M
+
+networks:
+  gpt-network:
+    driver: bridge
+</file>
+
+<file path="Dockerfile">
+FROM node:18-alpine AS build
+
+WORKDIR /app
+
+# Copy package.json and install dependencies
+COPY package.json ./
+RUN npm install
+
+# Copy all files and build the project
+COPY . .
+RUN npm run build
+
+# Production stage
+FROM nginx:alpine
+
+# Copy built assets from the build stage
+COPY --from=build /app/dist /usr/share/nginx/html
+
+# Configure nginx for security
+RUN rm /etc/nginx/conf.d/default.conf
+COPY nginx.conf /etc/nginx/conf.d/
+
+# Use non-root user for better security
+RUN chown -R nginx:nginx /usr/share/nginx/html && \
+    chmod -R 755 /usr/share/nginx/html && \
+    chown -R nginx:nginx /var/cache/nginx && \
+    chown -R nginx:nginx /var/log/nginx && \
+    chown -R nginx:nginx /etc/nginx/conf.d && \
+    touch /var/run/nginx.pid && \
+    chown -R nginx:nginx /var/run/nginx.pid
+
+USER nginx
+
+EXPOSE 8080
+
+# Healthcheck to ensure the service is running properly
+HEALTHCHECK --interval=30s --timeout=3s \
+  CMD curl -f http://localhost:8082/ || exit 1
+</file>
+
+<file path="index.html">
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>My CustomGPT Collection</title>
+  <link rel="preconnect" href="https://fonts.googleapis.com">
+  <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+  <link href="https://fonts.googleapis.com/css2?family=Inter:wght@400;500;600;700&display=swap" rel="stylesheet">
+</head>
+<body>
+  <div class="container">
+    <header>
+      <h1 class="title">My CustomGPT Collection</h1>
+      <div class="controls">
+        <button class="theme-toggle" id="theme-toggle">🌓</button>
+        <div class="view-toggle">
+          <button id="grid-view" class="active">Grid</button>
+          <button id="list-view">List</button>
+        </div>
+      </div>
+    </header>
+
+    <div class="categories">
+      <button class="category active" data-category="all">All</button>
+      <button class="category" data-category="education">Education</button>
+      <button class="category" data-category="tech">Tech & Programming</button>
+      <button class="category" data-category="productivity">Productivity</button>
+      <button class="category" data-category="special">Special Interest</button>
+    </div>
+
+    <div class="search-box">
+      <span class="search-icon">🔍</span>
+      <input type="text" id="search-input" placeholder="Search CustomGPTs...">
+    </div>
+
+    <div class="gpt-container gpt-grid" id="gpt-container">
+      <!-- GPT CARDS WILL BE GENERATED HERE -->
+    </div>
+
+    <footer>
+      <p>© 2025 My Digital Playground | Powered by Coolify</p>
+    </footer>
+  </div>
+  <script type="module" src="/main.js"></script>
+</body>
+</html>
+</file>
+
+<file path="main.js">
+import './style.css';
+
+// GPT data
+const gpts = [
+  {
+    id: "g-67ad28c1468c8191b8cba04a0bc79225",
+    name: "Thinking in Bets",
+    icon: "🎲",
+    category: "productivity",
+    description: "Decision making and probability thinking assistant",
+    url: "https://chatgpt.com/g/g-67ad28c1468c8191b8cba04a0bc79225-thinking-in-bets"
+  },
+  {
+    id: "g-67395c4c5c648191987aed6fd190a142",
+    name: "Chinese Simplified Tutor",
+    icon: "汉",
+    category: "education",
+    description: "Learn Chinese with your personal study buddy",
+    url: "https://chatgpt.com/g/g-67395c4c5c648191987aed6fd190a142-chinese-simplified-tutor-my-study-buddy"
+  },
+  {
+    id: "g-673945fc19448191bb1f6a192628490e",
+    name: "English Tutor",
+    icon: "📝",
+    category: "education",
+    description: "Improve your English with personalized guidance",
+    url: "https://chatgpt.com/g/g-673945fc19448191bb1f6a192628490e-english-tutor-my-study-buddy"
+  },
+  {
+    id: "g-67397a53972c819187260413e040af67",
+    name: "Mathematics Tutor",
+    icon: "🔢",
+    category: "education",
+    description: "Get help with math problems and concepts",
+    url: "https://chatgpt.com/g/g-67397a53972c819187260413e040af67-mathematics-tutor-my-study-buddy"
+  },
+  {
+    id: "g-67397c2704648191bee931752145c843",
+    name: "Science Tutor",
+    icon: "🔬",
+    category: "education",
+    description: "Your personal science learning assistant",
+    url: "https://chatgpt.com/g/g-67397c2704648191bee931752145c843-science-tutor-my-study-buddy"
+  },
+  {
+    id: "g-kDx8VEbpn",
+    name: "Docker Linux Bash Tutor",
+    icon: "🐳",
+    category: "tech",
+    description: "Learn Docker, Linux, and Bash commands",
+    url: "https://chatgpt.com/g/g-kDx8VEbpn-docker-linux-bash-tutor"
+  },
+  {
+    id: "g-675b859d26748191acc000bfe117628b",
+    name: "n8n Tutor",
+    icon: "🔄",
+    category: "tech",
+    description: "Guidance for n8n automation workflows",
+    url: "https://chatgpt.com/g/g-675b859d26748191acc000bfe117628b-n8n-tutor"
+  },
+  {
+    id: "g-676214420184819181ba8c551aff3bc2",
+    name: "Callsign Bot",
+    icon: "📡",
+    category: "special",
+    description: "Assistant for amateur radio callsigns",
+    url: "https://chatgpt.com/g/g-676214420184819181ba8c551aff3bc2-callsign-bot"
+  },
+  {
+    id: "g-BnbKEHLdX",
+    name: "Flutter Tutor",
+    icon: "📱",
+    category: "tech",
+    description: "Learn and troubleshoot Flutter development",
+    url: "https://chatgpt.com/g/g-BnbKEHLdX-flutter-tutor"
+  },
+  {
+    id: "g-676e22a8083c81918be548bd69ff38d1",
+    name: "Flutter Book Bot",
+    icon: "📚",
+    category: "tech",
+    description: "Flutter development guide and reference",
+    url: "https://chatgpt.com/g/g-676e22a8083c81918be548bd69ff38d1-flutter-book-bot"
+  },
+  {
+    id: "g-678207d2b52881918e96df49681f2571",
+    name: "Thrustmaster Bot",
+    icon: "🎮",
+    category: "special",
+    description: "Support for Thrustmaster gaming peripherals",
+    url: "https://chatgpt.com/g/g-678207d2b52881918e96df49681f2571-thrustmaster-bot"
+  },
+  {
+    id: "g-fvQXBCTp5",
+    name: "AWS Developer Associate Tutor",
+    icon: "☁️",
+    category: "tech",
+    description: "Prepare for AWS certification exams",
+    url: "https://chatgpt.com/g/g-fvQXBCTp5-avvs-developer-associate-tutor"
+  },
+  {
+    id: "g-67be333263388191aa458c261241cf17",
+    name: "Witty Comeback",
+    icon: "😏",
+    category: "productivity",
+    description: "Generate clever and witty responses",
+    url: "https://chatgpt.com/g/g-67be333263388191aa458c261241cf17-witty-comeback"
+  },
+  {
+    id: "g-6758d5e6ce58819198c220e791f8c24f",
+    name: "Power Apps",
+    icon: "⚡",
+    category: "tech",
+    description: "Microsoft Power Apps development assistant",
+    url: "https://chatgpt.com/g/g-6758d5e6ce58819198c220e791f8c24f-power-apps"
+  }
+];
+
+// Function to generate GPT cards
+function generateGPTCards(filteredGPTs) {
+  const container = document.getElementById('gpt-container');
+  container.innerHTML = '';
+
+  if (container.classList.contains('gpt-grid')) {
+    // Grid view
+    filteredGPTs.forEach(gpt => {
+      container.innerHTML += `
+        <div class="gpt-card" data-category="${gpt.category}">
+          <div class="header">
+            <div class="icon">${gpt.icon}</div>
+            <div>
+              <h3 class="name">${gpt.name}</h3>
+              <span class="category-tag">${gpt.category.charAt(0).toUpperCase() + gpt.category.slice(1)}</span>
+            </div>
+          </div>
+          <div class="body">
+            <p class="description">${gpt.description}</p>
+            <a href="${gpt.url}" target="_blank" class="action-btn">Open GPT</a>
+          </div>
+        </div>
+      `;
+    });
+  } else {
+    // List view
+    filteredGPTs.forEach(gpt => {
+      container.innerHTML += `
+        <div class="gpt-list-item" data-category="${gpt.category}">
+          <div class="icon">${gpt.icon}</div>
+          <div class="content">
+            <h3 class="name">${gpt.name}</h3>
+            <span class="category-tag">${gpt.category.charAt(0).toUpperCase() + gpt.category.slice(1)}</span>
+          </div>
+          <a href="${gpt.url}" target="_blank" class="action-btn">Open</a>
+        </div>
+      `;
+    });
+  }
+}
+
+// Initialize
+document.addEventListener('DOMContentLoaded', function() {
+  // Generate initial cards
+  generateGPTCards(gpts);
+
+  // Theme toggle
+  const themeToggle = document.getElementById('theme-toggle');
+  themeToggle.addEventListener('click', function() {
+    document.body.classList.toggle('dark-mode');
+    // Save theme preference
+    const isDarkMode = document.body.classList.contains('dark-mode');
+    localStorage.setItem('darkMode', isDarkMode);
+  });
+
+  // Check for saved theme preference
+  const savedDarkMode = localStorage.getItem('darkMode') === 'true';
+  if (savedDarkMode) {
+    document.body.classList.add('dark-mode');
+  }
+
+  // View toggle
+  const gridView = document.getElementById('grid-view');
+  const listView = document.getElementById('list-view');
+  const container = document.getElementById('gpt-container');
+
+  gridView.addEventListener('click', function() {
+    gridView.classList.add('active');
+    listView.classList.remove('active');
+    container.classList.add('gpt-grid');
+    container.classList.remove('gpt-list');
+    generateGPTCards(getFilteredGPTs());
+    localStorage.setItem('viewMode', 'grid');
+  });
+
+  listView.addEventListener('click', function() {
+    listView.classList.add('active');
+    gridView.classList.remove('active');
+    container.classList.add('gpt-list');
+    container.classList.remove('gpt-grid');
+    generateGPTCards(getFilteredGPTs());
+    localStorage.setItem('viewMode', 'list');
+  });
+
+  // Check for saved view preference
+  const savedViewMode = localStorage.getItem('viewMode');
+  if (savedViewMode === 'list') {
+    listView.click();
+  }
+
+  // Category filtering
+  const categoryButtons = document.querySelectorAll('.category');
+  
+  categoryButtons.forEach(button => {
+    button.addEventListener('click', function() {
+      categoryButtons.forEach(btn => btn.classList.remove('active'));
+      this.classList.add('active');
+      generateGPTCards(getFilteredGPTs());
+      localStorage.setItem('activeCategory', this.dataset.category);
+    });
+  });
+
+  // Check for saved category preference
+  const savedCategory = localStorage.getItem('activeCategory');
+  if (savedCategory) {
+    const categoryButton = document.querySelector(`.category[data-category="${savedCategory}"]`);
+    if (categoryButton) {
+      categoryButton.click();
+    }
+  }
+
+  // Search functionality
+  const searchInput = document.getElementById('search-input');
+  
+  searchInput.addEventListener('input', function() {
+    generateGPTCards(getFilteredGPTs());
+  });
+
+  // Helper function to get filtered GPTs
+  function getFilteredGPTs() {
+    const activeCategory = document.querySelector('.category.active').dataset.category;
+    const searchTerm = searchInput.value.toLowerCase();
+    
+    return gpts.filter(gpt => {
+      const categoryMatch = activeCategory === 'all' || gpt.category === activeCategory;
+      const searchMatch = gpt.name.toLowerCase().includes(searchTerm) || 
+                        gpt.description.toLowerCase().includes(searchTerm);
+      return categoryMatch && searchMatch;
+    });
+  }
+});
+</file>
+
+<file path="nginx.conf">
+server {
+    listen 8082;
+    server_name localhost;
+    root /usr/share/nginx/html;
+    index index.html;
+
+    # Security headers
+    add_header X-Frame-Options "SAMEORIGIN";
+    add_header X-Content-Type-Options "nosniff";
+    add_header X-XSS-Protection "1; mode=block";
+    add_header Content-Security-Policy "default-src 'self'; script-src 'self' 'unsafe-inline'; style-src 'self' 'unsafe-inline'; img-src 'self' data:; connect-src 'self';";
+    add_header Referrer-Policy "strict-origin-when-cross-origin";
+    add_header Permissions-Policy "camera=(), microphone=(), geolocation=()";
+
+    # Optimize for performance
+    gzip on;
+    gzip_vary on;
+    gzip_min_length 10240;
+    gzip_proxied expired no-cache no-store private auth;
+    gzip_types text/plain text/css text/xml text/javascript application/javascript application/x-javascript application/xml;
+    gzip_disable "MSIE [1-6]\.";
+
+    # SPA fallback
+    location / {
+        try_files $uri $uri/ /index.html;
+    }
+
+    # Prevent access to hidden files
+    location ~ /\. {
+        deny all;
+        access_log off;
+        log_not_found off;
+    }
+}
+</file>
+
+<file path="package.json">
+{
+    "name": "custom-gpt-portal",
+    "private": true,
+    "version": "0.1.0",
+    "type": "module",
+    "scripts": {
+        "dev": "vite",
+        "build": "vite build",
+        "preview": "vite preview"
+    },
+    "devDependencies": {
+        "terser": "^5.39.0",
+        "vite": "^5.0.8"
+    }
+}
+</file>
+
+<file path="readme.md">
+# Coolify Deployment Guide for CustomGPT Portal
+
+This guide explains how to deploy your CustomGPT Portal using Coolify with Vite.
+
+## Prerequisites
+
+- Home server with Docker installed
+- Coolify set up on your server
+- Git repository access
+
+## Project Structure
+
+Here's the structure of the Vite project:
+
+```
+custom-gpt-portal/
+├── index.html
+├── style.css
+├── main.js
+├── vite.config.js
+├── package.json
+├── Dockerfile
+├── nginx.conf
+└── docker-compose.yml
+```
+
+## Deployment Steps
+
+### 1. Create a Git Repository
+
+1. Create a new repository on GitHub or another Git provider
+2. Upload all the project files to the repository
+3. Make sure to commit and push all changes
+
+### 2. Setting Up Coolify
+
+1. Access your Coolify dashboard at `http://YOUR_SERVER_IP:3000`
+2. Login with your credentials
+
+### 3. Connecting Your Repository
+
+1. In Coolify dashboard, go to "Sources" → "Add new" → "GitHub" (or your Git provider)
+2. Follow the authorization process to connect your Git account
+3. Select the repository you created for the CustomGPT Portal
+
+### 4. Creating a Deployment Service
+
+1. In Coolify dashboard, navigate to "Resources" → "New Service"
+2. Select "Docker" as the service type
+3. Choose your repository from the connected sources
+4. Configure the build settings:
+   - Build Method: Dockerfile
+   - Docker Compose: No (unless you want to use the docker-compose.yml file)
+   - Port: 8080
+   - Publish Port: Choose a port for external access (e.g., 8080)
+
+### 5. Configure Environment Variables (Optional)
+
+If needed, you can add environment variables in the Coolify dashboard:
+1. Go to your service settings
+2. Find "Environment Variables" section
+3. Add any required variables
+
+### 6. Deploy Your Service
+
+1. Click "Deploy" button in your service dashboard
+2. Coolify will automatically:
+   - Pull your code from the repository
+   - Build the Docker image using your Dockerfile
+   - Start the container with the specified settings
+
+### 7. Access Your CustomGPT Portal
+
+Once deployment is complete, access your portal at:
+- `http://YOUR_SERVER_IP:PUBLISHED_PORT`
+
+## Updating Your Portal
+
+When you want to add new CustomGPTs or make other changes:
+
+1. Update the `main.js` file with new GPT entries
+2. Commit and push changes to your repository
+3. Trigger a redeployment in Coolify:
+   - Either set up automatic deployments on push
+   - Or manually click "Redeploy" in the Coolify dashboard
+
+## Setting Up Automatic Deployments (Optional)
+
+1. In Coolify, go to your service settings
+2. Enable "Auto Deploy"
+3. Configure webhook in your Git repository to notify Coolify of changes
+
+## Transitioning to LibreChat
+
+To replace OpenAI GPTs with LibreChat instances:
+
+1. Deploy LibreChat using Coolify:
+   ```yaml
+   # Sample docker-compose.yml for LibreChat
+   version: '3'
+   services:
+     librechat:
+       image: ghcr.io/danny-avila/librechat:latest
+       environment:
+         - OPENAI_API_KEY=your_key_here
+         # Add other env variables as needed
+       ports:
+         - "3080:3080"
+       restart: unless-stopped
+   ```
+
+2. For each CustomGPT you want to replace:
+   - Create a custom preset in LibreChat
+   - Update the URL in your portal's `main.js` to point to your LibreChat instance
+   - Redeploy the portal
+
+## Security Considerations
+
+- Coolify provides built-in HTTPS with Let's Encrypt
+- Consider setting up authentication for your portal
+- Regularly update your Coolify instance and deployed applications
+- Keep your API keys and credentials secure
+</file>
+
+<file path="style.css">
+:root {
+  --primary: #4F46E5;
+  --primary-hover: #4338CA;
+  --bg-light: #F9FAFB;
+  --bg-dark: #1F2937;
+  --text-light: #1F2937;
+  --text-dark: #F9FAFB;
+  --card-light: #FFFFFF;
+  --card-dark: #374151;
+  --border-light: #E5E7EB;
+  --border-dark: #4B5563;
+}
+
+body {
+  font-family: 'Inter', -apple-system, BlinkMacSystemFont, 'Segoe UI', Roboto, Oxygen, Ubuntu, Cantarell, 'Open Sans', 'Helvetica Neue', sans-serif;
+  line-height: 1.6;
+  margin: 0;
+  padding: 0;
+  transition: background-color 0.3s, color 0.3s;
+  background-color: var(--bg-light);
+  color: var(--text-light);
+  font-size: 16px; /* Base font size increased */
+}
+
+body.dark-mode {
+  background-color: var(--bg-dark);
+  color: var(--text-dark);
+}
+
+.container {
+  max-width: 1200px;
+  margin: 0 auto;
+  padding: 2rem;
+}
+
+header {
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+  margin-bottom: 2rem;
+}
+
+.title {
+  font-size: 2.5rem; /* Increased from 2.25rem */
+  font-weight: 700;
+}
+
+.controls {
+  display: flex;
+  gap: 1rem;
+  align-items: center;
+}
+
+.theme-toggle {
+  background: none;
+  border: none;
+  cursor: pointer;
+  font-size: 1.5rem;
+  color: var(--text-light);
+  transition: transform 0.3s;
+}
+
+body.dark-mode .theme-toggle {
+  color: var(--text-dark);
+}
+
+.theme-toggle:hover {
+  transform: rotate(15deg);
+}
+
+.view-toggle {
+  display: flex;
+  border: 1px solid var(--border-light);
+  border-radius: 0.5rem;
+  overflow: hidden;
+}
+
+body.dark-mode .view-toggle {
+  border-color: var(--border-dark);
+}
+
+.view-toggle button {
+  background: none;
+  border: none;
+  padding: 0.5rem 0.75rem;
+  cursor: pointer;
+  font-weight: 500;
+  color: var(--text-light);
+}
+
+body.dark-mode .view-toggle button {
+  color: var(--text-dark);
+}
+
+.view-toggle button.active {
+  background-color: var(--primary);
+  color: white;
+}
+
+.categories {
+  display: flex;
+  gap: 0.75rem;
+  margin-bottom: 2rem;
+  flex-wrap: wrap;
+}
+
+.category {
+  background: none;
+  border: 1px solid var(--border-light);
+  border-radius: 2rem;
+  padding: 0.6rem 1.2rem; /* Increased padding */
+  cursor: pointer;
+  font-weight: 500;
+  font-size: 1.05rem; /* Increased font size */
+  transition: background-color 0.3s, color 0.3s;
+}
+
+body.dark-mode .category {
+  border-color: var(--border-dark);
+}
+
+.category.active {
+  background-color: var(--primary);
+  color: white;
+  border-color: var(--primary);
+}
+
+.category:hover:not(.active) {
+  background-color: var(--border-light);
+}
+
+body.dark-mode .category:hover:not(.active) {
+  background-color: var(--border-dark);
+}
+
+.search-box {
+  width: 100%;
+  margin-bottom: 2rem;
+  position: relative;
+}
+
+.search-box input {
+  width: 100%;
+  padding: 0.85rem 1rem 0.85rem 3rem; /* Increased padding */
+  border-radius: 0.5rem;
+  border: 1px solid var(--border-light);
+  font-size: 1.1rem; /* Increased font size */
+  background-color: var(--card-light);
+  color: var(--text-light);
+  transition: border-color 0.3s;
+}
+
+body.dark-mode .search-box input {
+  border-color: var(--border-dark);
+  background-color: var(--card-dark);
+  color: var(--text-dark);
+}
+
+.search-box input:focus {
+  outline: none;
+  border-color: var(--primary);
+}
+
+.search-icon {
+  position: absolute;
+  left: 1rem;
+  top: 50%;
+  transform: translateY(-50%);
+  color: #9CA3AF;
+}
+
+.gpt-grid {
+  display: grid;
+  grid-template-columns: repeat(auto-fill, minmax(280px, 1fr));
+  gap: 1.5rem;
+}
+
+.gpt-list {
+  display: flex;
+  flex-direction: column;
+  gap: 1rem;
+}
+
+.gpt-card {
+  border-radius: 0.75rem;
+  overflow: hidden;
+  transition: transform 0.3s, box-shadow 0.3s;
+  background-color: var(--card-light);
+  border: 1px solid var(--border-light);
+}
+
+body.dark-mode .gpt-card {
+  background-color: var(--card-dark);
+  border-color: var(--border-dark);
+}
+
+.gpt-card:hover {
+  transform: translateY(-5px);
+  box-shadow: 0 10px 25px -5px rgba(0, 0, 0, 0.1);
+}
+
+body.dark-mode .gpt-card:hover {
+  box-shadow: 0 10px 25px -5px rgba(0, 0, 0, 0.5);
+}
+
+.gpt-card .header {
+  padding: 1.25rem;
+  display: flex;
+  align-items: center;
+  gap: 1rem;
+  border-bottom: 1px solid var(--border-light);
+}
+
+body.dark-mode .gpt-card .header {
+  border-color: var(--border-dark);
+}
+
+.gpt-card .icon {
+  width: 56px; /* Increased from 48px */
+  height: 56px; /* Increased from 48px */
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  font-size: 1.75rem; /* Increased from 1.5rem */
+  background-color: var(--primary);
+  color: white;
+  border-radius: 0.5rem;
+}
+
+.gpt-card .name {
+  font-weight: 600;
+  font-size: 1.3rem; /* Increased from 1.125rem */
+  margin: 0;
+}
+
+.gpt-card .category-tag {
+  font-size: 0.85rem; /* Increased from 0.75rem */
+  font-weight: 500;
+  background-color: #EFF6FF;
+  color: #3B82F6;
+  padding: 0.3rem 0.6rem; /* Increased padding */
+  border-radius: 0.25rem;
+  display: inline-block;
+}
+
+body.dark-mode .gpt-card .category-tag {
+  background-color: #1E40AF;
+  color: #DBEAFE;
+}
+
+.gpt-card .body {
+  padding: 1.25rem;
+}
+
+.gpt-card .description {
+  margin: 0 0 1rem 0;
+  color: #6B7280;
+  font-size: 1.05rem; /* Added larger font size */
+}
+
+body.dark-mode .gpt-card .description {
+  color: #D1D5DB;
+}
+
+.action-btn {
+  display: inline-block;
+  background-color: var(--primary);
+  color: white;
+  text-decoration: none;
+  padding: 0.6rem 1.2rem; /* Increased padding */
+  border-radius: 0.5rem;
+  font-weight: 500;
+  font-size: 1.05rem; /* Increased font size */
+  transition: background-color 0.3s;
+  border: none;
+  cursor: pointer;
+  text-align: center;
+}
+
+.action-btn:hover {
+  background-color: var(--primary-hover);
+}
+
+.gpt-list-item {
+  display: flex;
+  align-items: center;
+  gap: 1rem;
+  padding: 1rem;
+  border-radius: 0.5rem;
+  background-color: var(--card-light);
+  border: 1px solid var(--border-light);
+  transition: transform 0.3s, box-shadow 0.3s;
+}
+
+body.dark-mode .gpt-list-item {
+  background-color: var(--card-dark);
+  border-color: var(--border-dark);
+}
+
+.gpt-list-item:hover {
+  transform: translateX(5px);
+  box-shadow: 0 4px 12px rgba(0, 0, 0, 0.05);
+}
+
+body.dark-mode .gpt-list-item:hover {
+  box-shadow: 0 4px 12px rgba(0, 0, 0, 0.3);
+}
+
+.gpt-list-item .icon {
+  width: 40px;
+  height: 40px;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  font-size: 1.25rem;
+  background-color: var(--primary);
+  color: white;
+  border-radius: 0.5rem;
+  flex-shrink: 0;
+}
+
+.gpt-list-item .content {
+  flex-grow: 1;
+}
+
+.gpt-list-item .name {
+  font-weight: 600;
+  margin: 0;
+}
+
+.gpt-list-item .category-tag {
+  font-size: 0.75rem;
+  font-weight: 500;
+  background-color: #EFF6FF;
+  color: #3B82F6;
+  padding: 0.25rem 0.5rem;
+  border-radius: 0.25rem;
+  display: inline-block;
+}
+
+body.dark-mode .gpt-list-item .category-tag {
+  background-color: #1E40AF;
+  color: #DBEAFE;
+}
+
+.gpt-list-item .action-btn {
+  flex-shrink: 0;
+}
+
+footer {
+  margin-top: 3rem;
+  text-align: center;
+  color: #6B7280;
+  font-size: 0.875rem;
+}
+
+body.dark-mode footer {
+  color: #9CA3AF;
+}
+
+@media (max-width: 768px) {
+  .container {
+    padding: 1rem;
+  }
+
+  .title {
+    font-size: 1.75rem;
+  }
+
+  header {
+    flex-direction: column;
+    align-items: flex-start;
+    gap: 1rem;
+  }
+
+  .controls {
+    width: 100%;
+    justify-content: space-between;
+  }
+
+  .gpt-grid {
+    grid-template-columns: repeat(auto-fill, minmax(250px, 1fr));
+  }
+}
+
+@media (max-width: 480px) {
+  .gpt-grid {
+    grid-template-columns: 1fr;
+  }
+}
+</file>
+
+<file path="vite.config.js">
+import { defineConfig } from 'vite';
+
+export default defineConfig({
+  server: {
+    port: 3000,
+    open: true,
+  },
+  build: {
+    outDir: 'dist',
+    minify: false,  // Changed from 'terser' to false
+    sourcemap: false,
+  },
+});
+</file>
+
+</files>
